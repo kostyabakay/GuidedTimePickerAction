@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 public class GuidedActionsStylistExtended extends GuidedActionsStylist {
 
-    public static final int VIEW_TYPE_TIME_PICKER = 2;
+    private static final int VIEW_TYPE_TIME_PICKER = 2;
 
     @Override
     public int getItemViewType(GuidedAction action) {
@@ -22,7 +22,7 @@ public class GuidedActionsStylistExtended extends GuidedActionsStylist {
     @Override
     public int onProvideItemLayoutId(int viewType) {
         if (viewType == VIEW_TYPE_TIME_PICKER) {
-            return R.layout.action_time_picker;
+            return R.layout.guided_action_time_picker;
         } else {
             return super.onProvideItemLayoutId(viewType);
         }

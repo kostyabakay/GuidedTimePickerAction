@@ -20,15 +20,15 @@ public class GuidedTimePickerAction extends GuidedAction {
      */
     public abstract static class BuilderBase<B extends BuilderBase>
             extends GuidedAction.BuilderBase<B> {
-        private String mDatePickerFormat;
-        private long mDate;
-        private long mMinDate = Long.MIN_VALUE;
-        private long mMaxDate = Long.MAX_VALUE;
+        private String mTimePickerFormat;
+        private long mTime;
+        private long mMinTime = Long.MIN_VALUE;
+        private long mMaxTime = Long.MAX_VALUE;
 
         public BuilderBase(Context context) {
             super(context);
             Calendar c = Calendar.getInstance();
-            mDate = c.getTimeInMillis();
+            mTime = c.getTimeInMillis();
             hasEditableActivatorView(true);
         }
 
@@ -41,18 +41,18 @@ public class GuidedTimePickerAction extends GuidedAction {
          * @return This Builder object.
          */
         public B datePickerFormat(String format) {
-            mDatePickerFormat = format;
+            mTimePickerFormat = format;
             return (B) this;
         }
 
         /**
-         * Sets a Date for date picker in milliseconds since January 1, 1970 00:00:00 in
+         * Sets a Time for time picker in milliseconds since January 1, 1970 00:00:00 in
          * {@link TimeZone#getDefault()} time zone.
          *
          * @return This Builder Object.
          */
-        public B date(long date) {
-            mDate = date;
+        public B time(long time) {
+            mTime = time;
             return (B) this;
         }
 
@@ -63,7 +63,7 @@ public class GuidedTimePickerAction extends GuidedAction {
          * @return This Builder Object.
          */
         public B minDate(long minDate) {
-            mMinDate = minDate;
+            mMinTime = minDate;
             return (B) this;
         }
 
@@ -74,7 +74,7 @@ public class GuidedTimePickerAction extends GuidedAction {
          * @return This Builder Object.
          */
         public B maxDate(long maxDate) {
-            mMaxDate = maxDate;
+            mMaxTime = maxDate;
             return (B) this;
         }
 
@@ -85,13 +85,13 @@ public class GuidedTimePickerAction extends GuidedAction {
          */
         protected final void applyTimePickerValues(GuidedTimePickerAction action) {
             super.applyValues(action);
-            action.mDatePickerFormat = mDatePickerFormat;
-            action.mDate = mDate;
-            if (mMinDate > mMaxDate) {
-                throw new IllegalArgumentException("MinDate cannot be larger than MaxDate");
+            action.mTimePickerFormat = mTimePickerFormat;
+            action.mTime = mTime;
+            if (mMinTime > mMaxTime) {
+                throw new IllegalArgumentException("MinTime cannot be larger than MaxTime");
             }
-            action.mMinDate = mMinDate;
-            action.mMaxDate = mMaxDate;
+            action.mMinTime = mMinTime;
+            action.mMaxTime = mMaxTime;
         }
     }
 
@@ -115,10 +115,10 @@ public class GuidedTimePickerAction extends GuidedAction {
         }
     }
 
-    private String mDatePickerFormat;
-    private long mDate;
-    private long mMinDate = Long.MIN_VALUE;
-    private long mMaxDate = Long.MAX_VALUE;
+    private String mTimePickerFormat;
+    private long mTime;
+    private long mMinTime = Long.MIN_VALUE;
+    private long mMaxTime = Long.MAX_VALUE;
 
     /**
      * Returns format of date Picker or null if not specified.  The format is a case insensitive
@@ -128,8 +128,8 @@ public class GuidedTimePickerAction extends GuidedAction {
      *
      * @return Format of showing Date, e.g. "YMD".  Returns null if using current locale's default.
      */
-    public String getDatePickerFormat() {
-        return mDatePickerFormat;
+    public String getTimePickerFormat() {
+        return mTimePickerFormat;
     }
 
     /**
@@ -139,7 +139,7 @@ public class GuidedTimePickerAction extends GuidedAction {
      * @return Current value of DatePicker Action.
      */
     public long getDate() {
-        return mDate;
+        return mTime;
     }
 
     /**
@@ -149,7 +149,7 @@ public class GuidedTimePickerAction extends GuidedAction {
      * @param date New value to update current value of DatePicker Action.
      */
     public void setDate(long date) {
-        mDate = date;
+        mTime = date;
     }
 
     /**
@@ -159,7 +159,7 @@ public class GuidedTimePickerAction extends GuidedAction {
      * @return Minimal value of DatePicker Action or Long.MIN_VALUE if not set.
      */
     public long getMinDate() {
-        return mMinDate;
+        return mMinTime;
     }
 
     /**
@@ -169,7 +169,7 @@ public class GuidedTimePickerAction extends GuidedAction {
      * @return Maximum value of DatePicker Action or Long.MAX_VALUE if not set.
      */
     public long getMaxDate() {
-        return mMaxDate;
+        return mMaxTime;
     }
 
     @Override

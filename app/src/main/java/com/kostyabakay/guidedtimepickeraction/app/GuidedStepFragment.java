@@ -19,6 +19,7 @@ public class GuidedStepFragment extends GuidedStepSupportFragment {
     protected static final int ACTION_DATE_PICKER = 10001;
     protected static final int ACTION_TIME_PICKER = 10002;
 
+    @NonNull
     public static GuidedStepFragment newInstance() {
         Bundle args = new Bundle();
         GuidedStepFragment fragment = new GuidedStepFragment();
@@ -36,8 +37,9 @@ public class GuidedStepFragment extends GuidedStepSupportFragment {
         super.onCreateActions(actions, savedInstanceState);
         Context context = getContext();
         if (context != null) {
-            addDateAction(context, actions, new Date().getTime());
-            addTimeAction(context, actions, new Date().getTime());
+            long currentDate = new Date().getTime();
+            addDateAction(context, actions, currentDate);
+            addTimeAction(context, actions, currentDate);
         }
     }
 
@@ -52,10 +54,10 @@ public class GuidedStepFragment extends GuidedStepSupportFragment {
 
     protected void addTimeAction(@NonNull Context context,
                                  @NonNull List<GuidedAction> actions,
-                                 long currentDate) {
+                                 long currentTime) {
         actions.add(new GuidedTimePickerAction.Builder(context)
                 .id(ACTION_TIME_PICKER)
-                .date(currentDate)
+                .time(currentTime)
                 .build());
     }
 }
