@@ -1,4 +1,4 @@
-package com.kostyabakay.guidedtimepickeraction;
+package com.kostyabakay.guidedtimepickeraction.app;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

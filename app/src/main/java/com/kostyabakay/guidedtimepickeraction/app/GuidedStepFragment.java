@@ -1,4 +1,4 @@
-package com.kostyabakay.guidedtimepickeraction;
+package com.kostyabakay.guidedtimepickeraction.app;
 
 import android.content.Context;
 import android.os.Bundle;
