@@ -16,8 +16,8 @@ import java.util.List;
 
 public class GuidedStepFragment extends GuidedStepSupportFragment {
 
-    protected static final int ACTION_DATE_PICKER = 10001;
-    protected static final int ACTION_TIME_PICKER = 10002;
+    private static final int ACTION_DATE_PICKER = 10001;
+    private static final int ACTION_TIME_PICKER = 10002;
 
     @NonNull
     public static GuidedStepFragment newInstance() {
@@ -27,7 +27,9 @@ public class GuidedStepFragment extends GuidedStepSupportFragment {
         return fragment;
     }
 
+    //region GuidedStepSupportFragment
     @Override
+    @NonNull
     public GuidedActionsStylist onCreateActionsStylist() {
         return new GuidedActionsStylistExtended();
     }
@@ -42,8 +44,10 @@ public class GuidedStepFragment extends GuidedStepSupportFragment {
             addTimeAction(context, actions, currentDate);
         }
     }
+    //endregion
 
-    protected void addDateAction(@NonNull Context context,
+    //region Utility API
+    private void addDateAction(@NonNull Context context,
                                  @NonNull List<GuidedAction> actions,
                                  long currentDate) {
         actions.add(new GuidedDatePickerAction.Builder(context)
@@ -52,7 +56,7 @@ public class GuidedStepFragment extends GuidedStepSupportFragment {
                 .build());
     }
 
-    protected void addTimeAction(@NonNull Context context,
+    private void addTimeAction(@NonNull Context context,
                                  @NonNull List<GuidedAction> actions,
                                  long currentTime) {
         actions.add(new GuidedTimePickerAction.Builder(context)
@@ -60,4 +64,5 @@ public class GuidedStepFragment extends GuidedStepSupportFragment {
                 .time(currentTime)
                 .build());
     }
+    //endregion
 }

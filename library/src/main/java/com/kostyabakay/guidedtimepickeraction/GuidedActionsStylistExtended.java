@@ -1,5 +1,6 @@
 package com.kostyabakay.guidedtimepickeraction;
 
+import android.support.annotation.NonNull;
 import android.support.v17.leanback.widget.GuidedAction;
 import android.support.v17.leanback.widget.GuidedActionsStylist;
 import android.support.v17.leanback.widget.picker.TimePicker;
@@ -10,6 +11,7 @@ public class GuidedActionsStylistExtended extends GuidedActionsStylist {
 
     private static final int VIEW_TYPE_TIME_PICKER = 2;
 
+    //region GuidedActionsStylist
     @Override
     public int getItemViewType(GuidedAction action) {
         if (action instanceof GuidedTimePickerAction) {
@@ -27,31 +29,32 @@ public class GuidedActionsStylistExtended extends GuidedActionsStylist {
             return super.onProvideItemLayoutId(viewType);
         }
     }
+    //endregion
 
-    public void onBindActivatorView(GuidedActionsStylist.ViewHolder vh, GuidedAction action) {
+    public void onBindActivatorView(@NonNull GuidedActionsStylist.ViewHolder vh, GuidedAction action) {
         if (action instanceof GuidedTimePickerAction) {
             GuidedTimePickerAction timeAction = (GuidedTimePickerAction) action;
             TimePicker timeView = vh.itemView.findViewById(R.id.guidedactions_activator_item);
-            Calendar c = Calendar.getInstance();
-            c.setTimeInMillis(timeAction.getDate());
-            timeView.setHour(c.get(Calendar.HOUR_OF_DAY));
-            timeView.setMinute(c.get(Calendar.MINUTE));
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(timeAction.getDate());
+            timeView.setHour(calendar.get(Calendar.HOUR_OF_DAY));
+            timeView.setMinute(calendar.get(Calendar.MINUTE));
         } else {
             super.onBindActivatorView(vh, action);
         }
     }
 
-    public boolean onUpdateActivatorView(GuidedActionsStylist.ViewHolder vh, GuidedAction action) {
+    public boolean onUpdateActivatorView(@NonNull GuidedActionsStylist.ViewHolder vh, GuidedAction action) {
         if (action instanceof GuidedTimePickerAction) {
             GuidedTimePickerAction timeAction = (GuidedTimePickerAction) action;
             TimePicker timeView = vh.itemView.findViewById(R.id.guidedactions_activator_item);
 
-            Calendar c = Calendar.getInstance();
-            c.setTimeInMillis(timeAction.getDate());
-            c.set(Calendar.HOUR_OF_DAY, timeView.getHour());
-            c.set(Calendar.MINUTE, timeView.getMinute());
-            if (timeAction.getDate() != c.getTimeInMillis()) {
-                timeAction.setDate(c.getTimeInMillis());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(timeAction.getDate());
+            calendar.set(Calendar.HOUR_OF_DAY, timeView.getHour());
+            calendar.set(Calendar.MINUTE, timeView.getMinute());
+            if (timeAction.getDate() != calendar.getTimeInMillis()) {
+                timeAction.setDate(calendar.getTimeInMillis());
                 return true;
             } else {
                 return false;

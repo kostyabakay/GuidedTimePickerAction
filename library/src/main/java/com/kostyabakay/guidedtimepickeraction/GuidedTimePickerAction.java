@@ -11,6 +11,7 @@ import java.util.TimeZone;
  * Subclass of GuidedAction that can choose a time.  The Action is editable by default; to make it
  * read only, call hasEditableActivatorView(false) on the Builder.
  */
+// TODO: Remove DatePicker logic
 public class GuidedTimePickerAction extends GuidedAction {
     /**
      * Base Builder class to build GuidedTimePickerAction.  Subclass this BuilderBase when app needs

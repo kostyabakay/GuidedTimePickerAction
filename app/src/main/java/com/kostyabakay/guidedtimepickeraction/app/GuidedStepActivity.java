@@ -7,9 +7,11 @@ import android.support.v4.app.FragmentActivity;
 
 public class GuidedStepActivity extends FragmentActivity {
 
+    //region FragmentActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GuidedStepSupportFragment.addAsRoot(this, GuidedStepFragment.newInstance(), android.R.id.content);
     }
+    //endregion
 }
