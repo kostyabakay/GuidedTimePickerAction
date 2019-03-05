@@ -36,7 +36,7 @@ public class GuidedActionsStylistExtended extends GuidedActionsStylist {
             GuidedTimePickerAction timeAction = (GuidedTimePickerAction) action;
             TimePicker timeView = vh.itemView.findViewById(R.id.guidedactions_activator_item);
             Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(timeAction.getDate());
+            calendar.setTimeInMillis(timeAction.getTime());
             timeView.setHour(calendar.get(Calendar.HOUR_OF_DAY));
             timeView.setMinute(calendar.get(Calendar.MINUTE));
         } else {
@@ -50,11 +50,11 @@ public class GuidedActionsStylistExtended extends GuidedActionsStylist {
             TimePicker timeView = vh.itemView.findViewById(R.id.guidedactions_activator_item);
 
             Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(timeAction.getDate());
+            calendar.setTimeInMillis(timeAction.getTime());
             calendar.set(Calendar.HOUR_OF_DAY, timeView.getHour());
             calendar.set(Calendar.MINUTE, timeView.getMinute());
-            if (timeAction.getDate() != calendar.getTimeInMillis()) {
-                timeAction.setDate(calendar.getTimeInMillis());
+            if (timeAction.getTime() != calendar.getTimeInMillis()) {
+                timeAction.setTime(calendar.getTimeInMillis());
                 return true;
             } else {
                 return false;
